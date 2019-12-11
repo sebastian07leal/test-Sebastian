@@ -18,11 +18,15 @@
     justify-content: center;
     flex-direction: column;
 
+    &__a {
+        width: 80%; 
+    }
+
     &__first-button {
         background-color: $firstColor;
         border-radius: 10px;
         color: $secondColor;
-        width: 80%;
+        width: 100%;
         height: 60px;
         border: none;
         margin-bottom: 20px;

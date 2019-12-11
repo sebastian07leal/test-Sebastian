@@ -8,6 +8,7 @@
 
     &__form {
         width: 50vw;
+        height: 100vh;
         max-height: 90vh;
         background-color: $firstColor;
         display: flex;
@@ -24,3 +25,13 @@
     }
 }
 
+@media screen and (max-width: 425px) {
+    
+    .container-f {    
+
+        &__form {
+            padding: 0px;
+            width: 100vw;
+        }
+    }
+}

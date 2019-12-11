@@ -17,6 +17,7 @@ class AddUser extends React.Component {
 		this.addIdentification = this.addIdentification.bind(this);
 		this.addPhone = this.addPhone.bind(this);
 		this.addEmail = this.addEmail.bind(this);
+		this.postData = this.postData.bind(this);
 
 		/**Estado dónde se all*/
 		this.state = {
@@ -28,9 +29,53 @@ class AddUser extends React.Component {
 		}
 	}
 
-	secondValidate(){
-			console.log('haciendo fetch');
-			console.log(this.state);
+	secondValidate({ name, surname, identification, email, phone}){
+
+		/**Estructura de datos para consultas*/
+		const dataToFetch = {
+			data: {
+				nombre: name,
+				apellido: surname,
+				cedula: identification,
+				correo: email,
+				telefono: phone
+			}
+		}
+		/**parceo de formato a JSON*/
+		const dataUser = JSON.stringify(dataToFetch); 
+
+		this.postData(dataUser);
+		
+	}
+
+	/**Estructura CRUD desde front todas son funciones asincronas*/
+	postData(data){
+		fetch('http://localhost:3000/api/favorites/', {
+			method: 'POST',
+			body: data,
+			headers: {
+				"Content-type": "application/json"
+			}
+		})
+		.then((response) => {
+			console.log(response);
+			if(response.ok){
+				console.log(response.statusText);
+				alert('El usuario se a agregado con éxito');
+				return true;
+			} else {
+				console.log('Error al enviar los datos');
+				return false;
+			}
+		})
+		.then((text) => {
+			console.log('Respuesta ',text);
+		})
+		.catch((err) => {
+			console.log(err);
+			alert('Error al agregar el usuario intentelo de nuevo')
+			return false;
+		});
 	}
 
 
@@ -38,7 +83,7 @@ class AddUser extends React.Component {
 	buttonAdd(){
 
 		if(this.valueData(this.state)){
-			this.secondValidate();
+			this.secondValidate(this.state);
 		}
 		
 	}

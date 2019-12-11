@@ -1,0 +1,115 @@
+@import '../Vars.scss';
+
+.container-items-form {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 5px solid $white;
+}
+
+.container-elemnt-f {
+    padding: 5px 0px 5px 0px;
+    width: 100%;
+    max-width: 75vw;
+    background-color: $firstColor;
+    &__item{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 5px;
+        padding: 5px 0px 5px 0px;
+        border-bottom: 1px solid $secondColor;
+        &--title {
+            margin: 0px;
+            font-size: 15px;
+            color: $secondligth;
+        }
+    }
+}
+
+.container-elemnt-b {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 20vw;
+    max-width: 23vw;
+    &__del {
+        width: 50%;
+        border: none;
+        outline: none;
+        height: 40px;
+        border-radius: 25px;
+        font-size: 20px;
+        background-color: #ff1744;
+        color: $firstColor;
+
+        &:hover {
+            border: 2px solid $firstColor;
+        }
+    }
+    &__add {
+        border: none;
+        width: 50%;
+        outline: none;
+        height: 40px;
+        border-radius: 25px;
+        font-size: 20px;
+        color: $secondColor;
+        background-color: $firstColor;
+
+        &:hover {
+            border: 2px solid $white;
+        }
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .container-elemnt-b {
+
+        &__del {
+            font-size: 15px;
+
+        }
+        &__add {
+          font-size: 15px;   
+
+        }
+    
+    }
+}
+
+@media screen and (max-width: 485px) {
+    .container-elemnt-b {
+
+        &__del {
+            font-size: 10px;
+
+        }
+        &__add {
+          font-size: 10px;   
+
+        }
+    
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .container-elemnt-f {
+        width: 100vw;
+        max-width: 100%;
+    }
+    .container-elemnt-b {
+        width: 100vw;
+        max-width: 100%;
+        height: 70px;
+        flex-direction: inherit;
+        &__del {
+            height: 20px;
+            width: 25%;
+        }
+        &__add {
+            height: 20px;
+            width: 25%;
+        }
+    }
+}

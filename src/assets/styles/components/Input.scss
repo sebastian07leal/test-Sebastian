@@ -8,7 +8,7 @@
         margin: 0px;
         color: $secondColor;
         font-size: 30px;
-        scroll-margin-bottom: 5px;
+        margin-bottom: 5px;
     }
     &__input {
         background-color: $secondligth;
@@ -21,6 +21,25 @@
         border-radius: 15px;
         padding-left: 15px;
         padding-right: 15px;
+    }
+
+}
+
+@media screen and (max-width: 425px) {
+    .conatiner-Input {
+
+        &__title {
+
+            font-size: 20px;
+
+        }
+        &__input {
+            border-radius: 15px;
+            padding-left: 15px;
+            padding-right: 15px;
+            width: 95%;
+        }
+    
     }
 
 }
