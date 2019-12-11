@@ -1,0 +1,17 @@
+@import '../Vars.scss';
+
+.big-button {
+    background-color: $secondColor;
+    height: 8vh;
+    outline: none;
+    border: none;
+    width: 40%;
+    border-radius: 25px;
+    font-size: 20px;
+    cursor: pointer;
+    color: $firstColor;
+
+    &:hover {
+        border: 3px solid white;
+    }
+}

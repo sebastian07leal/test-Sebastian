@@ -1,0 +1,26 @@
+@import '../Vars.scss';
+
+.conatiner-Input {
+    // background-color: lightblue;
+    width: 90%;
+    padding: 5px 10px 5px 10px;
+    &__title {
+        margin: 0px;
+        color: $secondColor;
+        font-size: 30px;
+        scroll-margin-bottom: 5px;
+    }
+    &__input {
+        background-color: $secondligth;
+        width: 100%;
+        margin-top: 10px;
+        outline: none;
+        color: $firstColor;
+        height: 35px;
+        border: none;
+        border-radius: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+}

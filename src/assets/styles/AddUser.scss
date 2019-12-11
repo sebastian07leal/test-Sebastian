@@ -1,0 +1,26 @@
+@import '../styles/Vars.scss';
+
+.container-f {
+    height: 80vw;
+    background-color: $white;
+    display: flex;
+    justify-content: center;
+
+    &__form {
+        width: 50vw;
+        max-height: 90vh;
+        background-color: $firstColor;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 20px 10px 10px;
+    }
+
+    &__input {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
