@@ -56,7 +56,7 @@ class ShowData extends React.Component {
             </section>
             <section className="container-elemnt-b">
                 <button onClick={this.deleteUser}  className="container-elemnt-b__del">Eliminar</button>
-                <button className="container-elemnt-b__add">Editar</button>
+                <a className="container-elemnt-b__a" href="/editUser"><button className="container-elemnt-b__add">Editar</button></a>
             </section>
         </div>
         );
