@@ -11,7 +11,6 @@ class Listed extends React.Component {
         super(props);
         
         this.getData = this.getData.bind(this);
-        this.deleData = this.deleData.bind(this);
         this.show = this.show.bind(this);
         this.transform = this.transform.bind(this);
 
@@ -37,11 +36,6 @@ class Listed extends React.Component {
                 })
                 .catch((err) => console.log(err));
 
-    }
-    deleData(){
-        console.log('Eliminando');
-
-            
     }
 
     show(){
@@ -70,13 +64,13 @@ class Listed extends React.Component {
 
         return (
             <ShowData
-                del={this.deleData}
                 key={dataUser._id}
                 name={dataUser.nombre} 
                 surname={dataUser.apellido} 
                 identification={dataUser.cedula}
                 email={dataUser.correo} 
                 phone={dataUser.telefono}
+                idUser={dataUser._id}
             />
         );
 

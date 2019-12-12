@@ -62,6 +62,7 @@ class AddUser extends React.Component {
 			if(response.ok){
 				console.log(response.statusText);
 				alert('El usuario se a agregado con éxito');
+				location.reload()
 				return true;
 			} else {
 				console.log('Error al enviar los datos');
