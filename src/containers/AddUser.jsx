@@ -1,14 +1,18 @@
 import React from 'react';
 import Header from '../components/Header';
 import Input from '../components/Input';
-import BigBUtton from '../components/BigButton';
+import BigButton from '../components/BigButton';
 import '../assets/styles/AddUser.scss';
 
 class AddUser extends React.Component {
 	constructor(props) {
 		super(props);
 	
+		const {nameU, surnameU, identificationU, emailU, phoneU, viewEdit } = this.props;
+
 		/**funciones bindeadas  para optimizar performance*/
+		this.refresh = this.refresh.bind(this);
+		this.handleView = this.handleView.bind(this);
 		this.secondValidate = this.secondValidate.bind(this);
 		this.buttonAdd = this.buttonAdd.bind(this);
 		this.valueData = this.valueData.bind(this);
@@ -18,14 +22,15 @@ class AddUser extends React.Component {
 		this.addPhone = this.addPhone.bind(this);
 		this.addEmail = this.addEmail.bind(this);
 		this.postData = this.postData.bind(this);
+		this.patchData = this.patchData.bind(this);
 
 		/**Estado dónde se all*/
 		this.state = {
-			name: '',
-			surname: '',
-			identification: 0,
-			phone: 0,
-			email: '',
+			name: nameU,
+			surname: surnameU,
+			identification: identificationU,
+			phone: phoneU,
+			email: emailU,
 		}
 	}
 
@@ -44,7 +49,12 @@ class AddUser extends React.Component {
 		/**parceo de formato a JSON*/
 		const dataUser = JSON.stringify(dataToFetch); 
 
-		this.postData(dataUser);
+		if(this.props.viewEdit){
+			this.patchData(dataUser);
+			
+		} else {
+			this.postData(dataUser);
+		}
 		
 	}
 
@@ -58,25 +68,47 @@ class AddUser extends React.Component {
 			}
 		})
 		.then((response) => {
-			console.log(response);
-			if(response.ok){
-				console.log(response.statusText);
-				alert('El usuario se a agregado con éxito');
-				location.reload()
-				return true;
-			} else {
-				console.log('Error al enviar los datos');
-				return false;
-			}
+			response.json();
 		})
-		.then((text) => {
-			console.log('Respuesta ',text);
+		.then((data) => {
+			console.log(data);
+			this.refresh();
 		})
 		.catch((err) => {
 			console.log(err);
 			alert('Error al agregar el usuario intentelo de nuevo')
-			return false;
 		});
+	}
+	patchData(data){
+		console.log('haciendo patch')
+		console.log('Data enviada',data);
+		
+
+		fetch(`http://localhost:3000/api/favorites/${this.props.idUserU}`, {
+			method: 'PATCH',
+			body: data,
+			headers: {
+				"Content-type": "application/json"
+			}
+		})
+		.then((response) => response.json())
+			.then((data) => {
+				console.log(data)
+				this.refresh();
+			})
+			.catch((err) => console.log(err));
+	}
+
+	/**Da aviso al usuario de la ceracion o edicion del usuario, a su vez recarga la pagina para ver los cambios*/
+	refresh(){
+	
+		if(this.props.viewEdit){
+			alert(`El usuario ${this.state.name} se a actualizado`); 
+		} else {
+			alert(`El usuario ${this.state.name} se a añadido`); 
+		}
+
+		location.reload();
 	}
 
 
@@ -197,9 +229,30 @@ class AddUser extends React.Component {
 	}
 
 
-    render(){
-        return (
-            <>
+	handleView(){
+
+		const {nameU, surnameU, identificationU, emailU, phoneU, viewEdit } = this.props;
+
+		if(viewEdit){
+
+			return (
+				<section className="container-f">
+					<div className="container-f__form">
+						<div className="container-f__input">
+						<Input val={nameU} f={this.addName} title={'Nombre'} />
+						<Input val={surnameU} f={this.addSurname} title={'Apellido'} />
+						<Input val={identificationU} f={this.addIdentification} title={'Cedula'} />
+						<Input val={phoneU} f={this.addPhone} title={'Telefono'} />
+						<Input val={emailU} f={this.addEmail} title={'Correo'} />
+						</div>
+						<BigButton funct={this.buttonAdd} text={'Editar'} />
+					</div>
+            	</section>
+			);
+		} else {
+			
+			return (
+			<>
 				<Header />
 				<section className="container-f">
 					<div className="container-f__form">
@@ -210,9 +263,21 @@ class AddUser extends React.Component {
 						<Input f={this.addPhone} title={'Telefono'} />
 						<Input f={this.addEmail} title={'Correo'} />
 						</div>
-						<BigBUtton funct={this.buttonAdd} text={'Agregar'} />
+						<BigButton funct={this.buttonAdd} text={'Agregar'} />
 					</div>
 				</section>
+            </>
+			);
+		}
+
+
+	}
+
+
+    render(){
+        return (
+            <>
+				{this.handleView()}
             </>
         );
     }

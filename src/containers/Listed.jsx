@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
 import ShowData from '../components/ShowData';
 import '../assets/styles/Listed.scss';
 
@@ -38,12 +37,11 @@ class Listed extends React.Component {
 
     }
 
+    /**Se encarga de mostrar solo los componentes cuando se esta han cargado los datos*/
     show(){
-
         if(this.state.users !== 0){
             
             const datosUsers = this.state.users;
-
             const usersArray = [];
             
             for(let i=0; i < datosUsers.length; i ++){
@@ -52,14 +50,12 @@ class Listed extends React.Component {
                 
             }
             
-            console.log('usersArray');
-            console.log(usersArray);
-            return (usersArray)
-            
+            return (usersArray)      
         }
         
     }
 
+    /**Se encarga de encapsular los datos dentro del componente*/
     transform(dataUser){
 
         return (

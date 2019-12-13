@@ -1,5 +1,6 @@
 import React from 'react';
 import '../assets/styles/components/ShowData.scss';
+import AddUser from '../containers/AddUser';
 
 class ShowData extends React.Component {
     constructor(props){
@@ -7,8 +8,16 @@ class ShowData extends React.Component {
 
         this.deleteUser = this.deleteUser.bind(this);
         this.refresh = this.refresh.bind(this);
+        this.handleView = this.handleView.bind(this);
+        this.handleButton = this.handleButton.bind(this);
+
+
+        this.state = {
+            button: false
+        }
     }
 
+    /**Se encarga de eliminar el usuario seleccionado*/
     deleteUser(){
         console.log('eliminadando usuario:');
         console.log(this.props.idUser);        
@@ -24,41 +33,77 @@ class ShowData extends React.Component {
 
     }
 
+    /**Refresca automaticamente depues de eliminar un usuario*/
     refresh(res){
         console.log(res);
         alert('Se elimino el usuario con exito');
         location.reload()
     }
+
+    handleButton(){
+        
+        this.setState({ button: !this.state.button})
+    
+    }
+
+    handleView(){
+
+        const {name, surname, identification, email, phone, idUser} = this.props;        
+
+        if(this.state.button){
+            
+            return (
+                <AddUser 
+                nameU={name} 
+                surnameU={surname} 
+                identificationU={identification} 
+                emailU={email} 
+                phoneU={phone} 
+                idUserU={idUser}
+                viewEdit={true}
+                />
+            );
+        } else {
+            return (
+                <div className="container-items-form">
+                <section className="container-elemnt-f">
+                    <div className="container-elemnt-f__item">
+                        <h3 className="container-elemnt-f__item--title" >{name}</h3>
+                    </div>
+                    <div className="container-elemnt-f__item">
+                        <h3 className="container-elemnt-f__item--title" >{surname}</h3>
+                    </div>
+                    <div className="container-elemnt-f__item">
+                        <h3 className="container-elemnt-f__item--title" >{identification}</h3>
+                    </div>
+                    <div className="container-elemnt-f__item">
+                        <h3 className="container-elemnt-f__item--title" >{email}</h3>
+                    </div>
+                    <div className="container-elemnt-f__item">
+                        <h3 className="container-elemnt-f__item--title" >{phone}</h3>
+                    </div>
+                </section>
+                <section className="container-elemnt-b">
+                    <button type='button' onClick={this.deleteUser}  className="container-elemnt-b__del">Eliminar</button>
+                    <button type='button' onClick={this.handleButton} className="container-elemnt-b__add">Editar</button>
+
+                </section>
+            </div>
+            );
+        }
+    }
+
+
     
     
     render(){
 
-        const {name, surname, identification, email, phone, idUser} = this.props;
+
         
         return(
-        <div className="container-items-form">
-            <section className="container-elemnt-f">
-                <div className="container-elemnt-f__item">
-                    <h3 className="container-elemnt-f__item--title" >{name}</h3>
-                </div>
-                <div className="container-elemnt-f__item">
-                    <h3 className="container-elemnt-f__item--title" >{surname}</h3>
-                </div>
-                <div className="container-elemnt-f__item">
-                    <h3 className="container-elemnt-f__item--title" >{identification}</h3>
-                </div>
-                <div className="container-elemnt-f__item">
-                    <h3 className="container-elemnt-f__item--title" >{email}</h3>
-                </div>
-                <div className="container-elemnt-f__item">
-                    <h3 className="container-elemnt-f__item--title" >{phone}</h3>
-                </div>
-            </section>
-            <section className="container-elemnt-b">
-                <button onClick={this.deleteUser}  className="container-elemnt-b__del">Eliminar</button>
-                <a className="container-elemnt-b__a" href="/editUser"><button className="container-elemnt-b__add">Editar</button></a>
-            </section>
-        </div>
+            <>
+            {this.handleView()}
+            </>
         );
 
     }
