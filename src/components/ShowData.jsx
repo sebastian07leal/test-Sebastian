@@ -22,7 +22,7 @@ class ShowData extends React.Component {
         console.log('eliminadando usuario:');
         console.log(this.props.idUser);        
         
-        fetch(`http://localhost:3000/api/dataMongo/${this.props.idUser}`,{
+        fetch(`https://mongo-api.now.sh/api/dataMongo/${this.props.idUser}`,{
             method: 'DELETE',
         })
         .then((response) => response.json())

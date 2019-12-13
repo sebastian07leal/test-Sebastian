@@ -27,7 +27,7 @@ class Listed extends React.Component {
     /**CRUD de la aplicación*/
     getData(){
         
-        fetch('http://localhost:3000/api/dataMongo/')
+        fetch('https://mongo-api.now.sh/api/dataMongo/')
             .then((response) => response.json())
                 .then((data) => {
                     
