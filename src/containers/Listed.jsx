@@ -77,7 +77,7 @@ class Listed extends React.Component {
 
         return (
             <>
-                <Header />
+                <Header buttonH={true} dirBut={'/'} textBut={'Volver a inicio'} />
                 <section className="visibleArea" id="sectionid">
                     {this.show()}
                 </section>

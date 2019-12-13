@@ -253,7 +253,7 @@ class AddUser extends React.Component {
 			
 			return (
 			<>
-				<Header />
+				<Header buttonH={true} dirBut={'/'} textBut={'Volver a inicio'} />
 				<section className="container-f">
 					<div className="container-f__form">
 						<div className="container-f__input">
