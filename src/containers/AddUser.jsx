@@ -60,7 +60,7 @@ class AddUser extends React.Component {
 
 	/**Estructura CRUD desde front todas son funciones asincronas*/
 	postData(data){
-		fetch('http://localhost:3000/api/favorites/', {
+		fetch('http://localhost:3000/api/dataMongo/', {
 			method: 'POST',
 			body: data,
 			headers: {
@@ -84,7 +84,7 @@ class AddUser extends React.Component {
 		console.log('Data enviada',data);
 		
 
-		fetch(`http://localhost:3000/api/favorites/${this.props.idUserU}`, {
+		fetch(`http://localhost:3000/api/dataMongo/${this.props.idUserU}`, {
 			method: 'PATCH',
 			body: data,
 			headers: {
