@@ -4,21 +4,17 @@
   "description": "FindMap es una aplicación realizada para la Escuela Javacript de Platzi por HelberToro y SebastianLeal.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open --mode development"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/helbertoro/findmap.git"
+    "url": "git+https://github.com/sebastian07leal/test-Sebastian"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/helbertoro/findmap/issues"
-  },
-  "homepage": "https://github.com/helbertoro/findmap#readme",
+  "license": "MIT",
+  "homepage": "https://github.com/sebastian07leal/test-Sebastian#readme",
   "dependencies": {
     "dotenv-webpack": "^1.7.0",
     "react": "^16.10.2",

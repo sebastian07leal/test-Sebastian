@@ -34,8 +34,8 @@ class AddUser extends React.Component {
 		}
 	}
 
+	/**Encapsula y realiza las operaciones de crud necesarias segun corresponda*/
 	secondValidate({ name, surname, identification, email, phone}){
-
 		/**Estructura de datos para consultas*/
 		const dataToFetch = {
 			data: {
@@ -48,17 +48,15 @@ class AddUser extends React.Component {
 		}
 		/**parceo de formato a JSON*/
 		const dataUser = JSON.stringify(dataToFetch); 
-
+		/**Si se llamo addUser para editar actualizara los datos en vez de crear un nuevo usuario de lo contrario creara el nuevo usuario*/
 		if(this.props.viewEdit){
 			this.patchData(dataUser);
-			
 		} else {
 			this.postData(dataUser);
 		}
-		
 	}
 
-	/**Estructura CRUD desde front todas son funciones asincronas*/
+	/**Estas funciones se encargan de realizar el envio de datos a la APIy manejar sus respuestas segun corresponda*/
 	postData(data){
 		fetch('https://mongo-api.now.sh/api/dataMongo/', {
 			method: 'POST',
@@ -101,94 +99,88 @@ class AddUser extends React.Component {
 
 	/**Da aviso al usuario de la ceracion o edicion del usuario, a su vez recarga la pagina para ver los cambios*/
 	refresh(){
-	
 		if(this.props.viewEdit){
 			alert(`El usuario ${this.state.name} se a actualizado`); 
 		} else {
 			alert(`El usuario ${this.state.name} se a añadido`); 
 		}
-
 		location.reload();
 	}
 
 
 	/**Handle de botton simula un listener*/
 	buttonAdd(){
-
 		if(this.valueData(this.state)){
 			this.secondValidate(this.state);
 		}
-		
 	}
+
 	/**Primera validacion de los datos enviados por el usuario*/
 	valueData({ name, surname, identification, phone, email }){
-
 		/**validacion de nombre*/
 		if(name) {
 			if( !(name.length <= 50) ){
-				console.log('El nombre es muy largo');
+				alert('El nombre es muy largo');
 				return false;
 			}
 		} else {
-			console.log('Por favor escriba el nombre');
+			alert('Por favor escriba el nombre');
 			return false;
 		}
 		/**validacion de apellido*/
 		if(surname) {
 			if( !(surname.length <= 50) ){
-				console.log('El apellido es muy largo');
+				alert('El apellido es muy largo');
 				return false;
 			}
 		} else {
-			console.log('Por favor escriba el apellido');
+			alert('Por favor escriba el apellido');
 			return false;
 		}
 		/**validacion de cedula*/
 		if(identification) {
 			if( !(identification.length <= 50) ){
-				console.log('La cedula es muy larga');
+				alert('La cedula es muy larga');
 				return false;
 			}
 			if(!this.findLetters(identification)){
-				console.log('La identificacion no puede contener letras');
+				alert('La identificacion no puede contener letras');
 				return false;
 			}
 		} else {
-			console.log('Por favor escriba su cedula');
+			alert('Por favor escriba su cedula');
 			return false;
 		}
 		/**validacion de telefono*/
 		if(phone) {
 			if( !(phone.length <= 50) ){
-				console.log('El telefono es muy largo');
+				alert('El telefono es muy largo');
 				return false;
 			}
 			if(!this.findLetters(phone)){
-				console.log('El numero de telefono no puede contener letra');
+				alert('El numero de telefono no puede contener letra');
 				return false;
 			}
 		} else {
-			console.log('Por favor escriba su telefono');
+			alert('Por favor escriba su telefono');
 			return false;
 		}
 		/**validar correo*/
 		if(email) {
 			if( !(email.length <= 50) ){
-				console.log('El correo es muy largo');
+				alert('El correo es muy largo');
 				return false;
 			}
 			if(!this.validateEmail(email)){
-				console.log('El correo no es valido');
+				alert('El correo no es valido');
 				return false;
 			}
 		} else {
-			console.log('Por favor escriba su correo electronico');
+			alert('Por favor escriba su correo electronico');
 			return false;
 		}
 		return true;
 	}
-
-
 
 	/**Funciones de validacion*/
 	findLetters(number){
@@ -210,7 +202,6 @@ class AddUser extends React.Component {
 		return false;
 	}
 
-
 	/**Añaden al estado lo escrito por el usuarios*/
 	addName(data){
 		this.setState({ name: data.target.value });
@@ -228,9 +219,8 @@ class AddUser extends React.Component {
 		this.setState({ email: data.target.value });
 	}
 
-
+	/**Se encarga de gestionar las vistas segun corresponda o actuar a un cambio hecho por el usuario*/
 	handleView(){
-
 		const {nameU, surnameU, identificationU, emailU, phoneU, viewEdit } = this.props;
 
 		if(viewEdit){
@@ -272,7 +262,6 @@ class AddUser extends React.Component {
 
 
 	}
-
 
     render(){
         return (

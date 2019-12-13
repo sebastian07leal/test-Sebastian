@@ -1,8 +1,6 @@
 import React from 'react';
-import ShowData from '../components/ShowData';
 import '../assets/styles/Listed.scss';
-
-
+import ShowData from '../components/ShowData';
 import Header from '../components/Header';
 
 class Listed extends React.Component {
@@ -18,15 +16,14 @@ class Listed extends React.Component {
         }
     }
 
+    /**Esta funcion hace parte del ciclo de react  y solo se ejecuta cuando el componente esta montado*/
     componentDidMount(){
         /**Traer datos*/
         this.getData();
-
     }
 
-    /**CRUD de la aplicación*/
+    /**Traer los datos desde la API mediante un fetch*/
     getData(){
-        
         fetch('https://mongo-api.now.sh/api/dataMongo/')
             .then((response) => response.json())
                 .then((data) => {
@@ -34,7 +31,6 @@ class Listed extends React.Component {
                     this.setState({ users: data.data });
                 })
                 .catch((err) => console.log(err));
-
     }
 
     /**Se encarga de mostrar solo los componentes cuando se esta han cargado los datos*/
@@ -45,9 +41,7 @@ class Listed extends React.Component {
             const usersArray = [];
             
             for(let i=0; i < datosUsers.length; i ++){
-              
-                usersArray.push(this.transform(datosUsers[i]));
-                
+                usersArray.push(this.transform(datosUsers[i]));  
             }
             
             return (usersArray)      
@@ -57,7 +51,6 @@ class Listed extends React.Component {
 
     /**Se encarga de encapsular los datos dentro del componente*/
     transform(dataUser){
-
         return (
             <ShowData
                 key={dataUser._id}
@@ -69,12 +62,10 @@ class Listed extends React.Component {
                 idUser={dataUser._id}
             />
         );
-
     }
 
 
     render(){
-
         return (
             <>
                 <Header buttonH={true} dirBut={'/'} textBut={'Volver a inicio'} />

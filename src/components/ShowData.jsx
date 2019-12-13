@@ -11,7 +11,6 @@ class ShowData extends React.Component {
         this.handleView = this.handleView.bind(this);
         this.handleButton = this.handleButton.bind(this);
 
-
         this.state = {
             button: false
         }
@@ -40,14 +39,13 @@ class ShowData extends React.Component {
         location.reload()
     }
 
+    /**Cambia el estado del boton cuando es cliqueado*/
     handleButton(){
-        
         this.setState({ button: !this.state.button})
-    
     }
 
+    /**Gestiona las vistas que se deben renderizar egun es el caso*/
     handleView(){
-
         const {name, surname, identification, email, phone, idUser} = this.props;        
 
         if(this.state.button){
@@ -86,26 +84,18 @@ class ShowData extends React.Component {
                 <section className="container-elemnt-b">
                     <button type='button' onClick={this.deleteUser}  className="container-elemnt-b__del">Eliminar</button>
                     <button type='button' onClick={this.handleButton} className="container-elemnt-b__add">Editar</button>
-
                 </section>
             </div>
             );
         }
     }
 
-
-    
-    
-    render(){
-
-
-        
+    render(){        
         return(
             <>
             {this.handleView()}
             </>
         );
-
     }
 }
 

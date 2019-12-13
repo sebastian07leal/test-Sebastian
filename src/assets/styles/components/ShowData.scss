@@ -3,24 +3,24 @@
 .container-items-form {
     display: flex;
     flex-wrap: wrap;
-    border-bottom: 5px solid $white;
+    border-bottom: 5px solid $firstColor;
 }
 
 .container-elemnt-f {
     padding: 5px 0px 5px 0px;
     width: 100%;
     max-width: 75vw;
-    background-color: $firstColor;
+    background-color: $secondligth;
     &__item{
         display: flex;
         justify-content: center;
         margin-bottom: 5px;
         padding: 5px 0px 5px 0px;
-        border-bottom: 1px solid $secondColor;
+        border: 1px solid $firstColor;
         &--title {
             margin: 0px;
             font-size: 15px;
-            color: $secondligth;
+            color: $firstColor;
         }
     }
 }
@@ -39,11 +39,11 @@
         height: 40px;
         border-radius: 25px;
         font-size: 20px;
-        background-color: #ff1744;
-        color: $firstColor;
+        background-color: $firstColor;
+        color: $secondColor;
 
         &:hover {
-            border: 2px solid $firstColor;
+            border: 2px solid $secondColor;
         }
     }
     &__add {
@@ -57,7 +57,7 @@
         background-color: $firstColor;
 
         &:hover {
-            border: 2px solid $white;
+            border: 2px solid $secondColor;
         }
     }
 
@@ -65,16 +65,12 @@
 
 @media screen and (max-width: 768px) {
     .container-elemnt-b {
-
         &__del {
             font-size: 15px;
-
         }
         &__add {
           font-size: 15px;   
-
         }
-    
     }
 }
 
@@ -82,13 +78,10 @@
     .container-elemnt-b {
         &__del {
             font-size: 10px;
-
         }
         &__add {
           font-size: 10px;   
-
         }
-    
     }
 }
 

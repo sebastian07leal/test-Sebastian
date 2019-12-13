@@ -9,8 +9,9 @@ class Header extends React.Component {
         this.handleButton = this.handleButton.bind(this);
     }
 
+    /**Se encarga de habilitar o desabilitar el boton cuando sea necesario segun la vista*/
     handleButton(){
-
+        /**Se desestructuran props para su mejor manejo*/
         const { dirBut, textBut, buttonH} = this.props
 
         if(buttonH){
@@ -23,7 +24,6 @@ class Header extends React.Component {
     }
 
     render(){
-
         return (
             <header className="header">
                 {this.handleButton()}
