@@ -1,6 +1,7 @@
 @import '../styles/Vars.scss';
 
 .container-f {
+    min-height: 95vh;
     height: 80vw;
     background-color: $white;
     display: flex;
@@ -28,7 +29,7 @@
 @media screen and (max-width: 425px) {
     
     .container-f {    
-
+        min-height: 91vh;
         &__form {
             padding: 0px;
             width: 100vw;
